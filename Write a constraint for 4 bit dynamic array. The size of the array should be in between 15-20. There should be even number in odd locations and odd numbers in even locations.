@@ -1,0 +1,45 @@
+class sample;
+
+	rand bit [4:0] a[];
+  	int i;
+	
+	constraint a_c{ foreach (a[i])
+				if(i%2==0)//even_loc
+					a[i]%2==1; //odd_val
+				else
+					a[i]%2==0;
+			}
+
+	function void display();
+		begin
+		foreach(a[i])
+          	begin
+			if(i%2==0)
+				$display("Loc= %p",i);
+			else
+				$display("Loc= %p",i);
+            end
+          	begin
+			if(a[i]%2==0)
+				$display("Val= %p",a[i]);
+			else
+				$display("Val= %p",a[i]);
+            end
+		end
+	endfunction
+endclass
+
+module top;
+
+sample s=new();
+
+	initial begin
+	repeat(10)
+		begin
+		assert(s.randomize());
+		s.display();
+		end
+	end
+endmodule
+
+					
