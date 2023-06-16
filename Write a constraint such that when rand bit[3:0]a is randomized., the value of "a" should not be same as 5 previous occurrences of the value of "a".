@@ -1,0 +1,26 @@
+class sample;
+
+  rand bit [3:0]a;
+  bit [3:0]q[$];
+
+  constraint a_c{ (q.size()!=5)->!(a inside {q});}
+
+	function void post_randomize();
+
+		q.push_back(a);
+		$display("Val_A= %p",a);
+		$display("Val_Q= %p",q);
+      //if(q.size()==5)
+		//	q.delete();
+
+	endfunction
+endclass
+module top;
+	sample s=new();
+	initial begin
+      repeat(10)
+	begin
+      assert(s.randomize());
+	end
+	end
+endmodule
