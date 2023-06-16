@@ -1,0 +1,20 @@
+class sample;
+  rand bit [3:0] a,b;
+  
+  constraint ab_c{a!=b;}
+  constraint toggle{$countones(a);}
+  
+endclass
+
+module top;
+  sample s=new();
+  repeat(5)
+    begin
+      assert(s.randomize());
+      $display("A=%b",s.a);
+      $display("B=%b",s.b);
+    end
+endmodule
+  
+
+					
