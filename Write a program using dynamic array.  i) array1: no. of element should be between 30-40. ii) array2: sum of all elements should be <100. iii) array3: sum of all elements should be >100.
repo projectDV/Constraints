@@ -1,0 +1,49 @@
+class sample;
+  rand int arr1[], arr3[];
+  rand bit[7:0] arr2[];
+  
+  constraint arr1_c{
+    foreach (arr1[i])
+      arr1[i] inside {[30:40]};}
+  
+  constraint arr2_c{
+    foreach(arr2[i])
+      arr2.sum <100;}
+  
+  constraint arr3_c{
+    foreach(arr3[i])
+      (arr3.sum >100);}
+    
+    constraint arr_size{arr1.size()==20;
+                        arr2.size()==20;
+                        arr3.size()==20;
+                       }
+    
+  function void post_randomize();
+    begin
+      $display("arr1%03p",arr1);
+      $display("arr2%03p",arr2);
+      $display("arr3%03p",arr3);
+      $display("Sum of arr2 %05d",arr2.sum);
+      $display("Sum of arr3 %05d",arr3.sum);
+    end
+  endfunction
+  
+endclass
+module top;
+  sample s=new();
+  initial begin
+    //repeat(20)
+      begin
+        assert(s.randomize());
+      end
+  end
+endmodule
+//========================================================================================
+                                        output
+//========================================================================================
+# arr1'{ 31,  39,  34,  39,  37,  30,  33,  40,  35,  39,  32,  32,  32,  30,  38,  37,  36,  30,  33,  38}
+# arr2'{249, 114,  21,   1,  91,  64, 131, 131, 244, 127, 196, 251, 209,  72, 122, 233,  19, 211,  80, 252}
+# arr3'{648218913, -647348556, -403514875, -448017673, -1138958382, -797956113, -213181997, 111366217, 1546935946, 42243392, 1190766686, 128642376, -738369863, 1071844264, 1064581352, -1279295977, 917357153, 524623053, 796398514, -898826992}
+# Sum of arr2     2
+# Sum of arr3 1477507438
