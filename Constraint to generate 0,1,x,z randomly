@@ -1,0 +1,53 @@
+class sample;
+  typedef enum{s0,s1,s2,s3} states;
+  rand states ss;
+  logic a;
+  
+  constraint ss_c{
+    ss dist{s0:=5,s1:=5,s2:=5,s3:=5};
+  }
+  function void post_randomize();
+    begin
+      case(ss)
+          s0: a=1;
+          s1: a=0;
+          s2: a='x;
+          s3: a='z;
+      endcase
+        $display("%0d",a);
+    end
+  endfunction
+  
+endclass
+module top;
+  sample s=new();
+  initial begin
+    repeat(20)
+      begin
+        assert(s.randomize());
+      end
+  end
+endmodule
+//=============================================================
+// 			Results
+//=============================================================
+# 0
+# z
+# x
+# 0
+# x
+# x
+# 1
+# z
+# 0
+# x
+# 1
+# z
+# 0
+# z
+# x
+# 1
+# 1
+# 0
+# x
+# 1
