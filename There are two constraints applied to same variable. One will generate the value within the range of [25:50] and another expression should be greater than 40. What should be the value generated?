@@ -1,0 +1,32 @@
+// Code your testbench here
+// or browse Examples
+class sample;
+  rand int a;
+  constraint a_c0{ a inside {[25:50]};}
+  constraint a_c1{ a >40;}
+  
+endclass
+module top;
+  sample s= new();
+  
+  initial begin
+    repeat(10)
+      begin
+        assert(s.randomize());
+        $display("%d",s.a);
+      end
+  end
+endmodule
+//=============================================================
+// 			Results
+//=============================================================
+#          50
+#          50
+#          41
+#          49
+#          43
+#          43
+#          47
+#          49
+#          50
+#          46
