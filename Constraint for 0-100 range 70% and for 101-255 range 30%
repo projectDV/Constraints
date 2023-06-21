@@ -1,5 +1,5 @@
-class sample;//========================= NEED to be verified===============================
-  rand int arr[];
+class sample;
+  rand int arr;
   constraint arr_c{ arr dist {[0:100]:=7, [101:255]:=3};}
   
   function void display();
@@ -8,13 +8,64 @@ class sample;//========================= NEED to be verified====================
 endclass  
 module top;
   sample s=new();
-  initial begin 
-    s.arr=new[5];
-    repeat(5)
-      	begin
+  initial begin
+    repeat(50)
+      begin
     assert(s.randomize());
     s.display();
-        end
+      end
   end
 endmodule
-
+//=============================================================
+// 			Results
+//=============================================================
+# Values:          95
+# Values:           6
+# Values:         107
+# Values:          31
+# Values:          38
+# Values:          68
+# Values:          76
+# Values:          53
+# Values:         222
+# Values:          61
+# Values:          72
+# Values:         139
+# Values:          43
+# Values:           9
+# Values:          22
+# Values:          33
+# Values:          26
+# Values:          17
+# Values:          28
+# Values:          49
+# Values:          60
+# Values:         130
+# Values:         196
+# Values:          94
+# Values:          48
+# Values:          90
+# Values:          64
+# Values:          76
+# Values:          86
+# Values:          43
+# Values:         196
+# Values:         199
+# Values:          81
+# Values:         146
+# Values:         146
+# Values:         195
+# Values:          32
+# Values:          43
+# Values:         200
+# Values:         129
+# Values:           1
+# Values:         253
+# Values:          30
+# Values:          15
+# Values:          62
+# Values:         238
+# Values:         105
+# Values:          87
+# Values:          73
+# Values:         252
