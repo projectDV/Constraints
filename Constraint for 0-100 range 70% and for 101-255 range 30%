@@ -1,0 +1,20 @@
+class sample;//========================= NEED to be verified===============================
+  rand int arr[];
+  constraint arr_c{ arr dist {[0:100]:=7, [101:255]:=3};}
+  
+  function void display();
+    $display("Values: %d",arr);
+  endfunction
+endclass  
+module top;
+  sample s=new();
+  initial begin 
+    s.arr=new[5];
+    repeat(5)
+      	begin
+    assert(s.randomize());
+    s.display();
+        end
+  end
+endmodule
+
