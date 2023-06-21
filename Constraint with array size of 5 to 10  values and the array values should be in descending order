@@ -1,0 +1,26 @@
+class sample;
+
+	rand bit [4:0] arr[];
+	constraint arr_size{ arr.size() inside {[5:10]};}
+	constraint arr_desc{ foreach(arr[i])
+				if(i>0)
+					arr[i]<arr[i-1];
+				}
+
+	function void print();
+		$display("Array Size= %d", arr.size());
+		$display("Descending order: %p", arr);
+	endfunction
+endclass
+module top;
+	sample s=new();
+	initial begin 
+	assert(s.randomize());
+      s.print();
+	end
+endmodule
+//=============================================================
+// 			Results
+//=============================================================
+# Array Size=           7
+# Descending order: '{15, 11, 7, 4, 3, 2, 1}
