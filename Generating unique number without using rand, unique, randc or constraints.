@@ -1,0 +1,25 @@
+class sample;
+  int data[15];
+  
+  function new();
+    foreach(data[i]) begin
+    			data[i]=i;
+    			end  
+  endfunction
+    function void display();
+    	data.shuffle();
+    	$display("Values= %p",data);
+  endfunction
+  
+endclass
+module top;
+  sample s=new();
+  initial begin
+    
+      assert(s.randomize());
+      s.display();
+    
+   end
+endmodule
+//======================================Result===================================
+Values= '{13, 6, 14, 0, 12, 1, 10, 5, 2, 7, 9, 11, 8, 4, 3}
