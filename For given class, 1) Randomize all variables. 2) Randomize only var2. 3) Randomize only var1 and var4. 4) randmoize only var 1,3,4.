@@ -1,0 +1,28 @@
+//================Given Class =====================================
+class randvar;
+  rand bit [7:0] var1, var2, var3, var4;
+endclass
+//============Solution=============================================
+// Code your testbench here
+// or browse Examples
+class randvar;
+  rand bit [7:0] var1, var2, var3, var4;
+endclass
+module top;
+  randvar r=new();
+  initial begin
+    r.randomize();
+    $display("Var1= %d, Var2= %d, Var3= %d, Var4= %d", r.var1,r.var2,r.var3,r.var4);
+    r.randomize(var2);
+    $display("Var1= %d, Var2= %d, Var3= %d, Var4= %d", r.var1,r.var2,r.var3,r.var4);
+    r.randomize(var1,var4);
+    $display("Var1= %d, Var2= %d, Var3= %d, Var4= %d", r.var1,r.var2,r.var3,r.var4);
+    r.randomize(var1,var3,var4);
+    $display("Var1= %d, Var2= %d, Var3= %d, Var4= %d", r.var1,r.var2,r.var3,r.var4);
+  end
+endmodule
+//=====================================Output=========================================
+Var1= 106, Var2=  55, Var3= 146, Var4= 230
+# Var1= 106, Var2= 218, Var3= 146, Var4= 230
+# Var1= 153, Var2= 218, Var3= 146, Var4=  83
+# Var1= 179, Var2= 218, Var3=  52, Var4= 113
