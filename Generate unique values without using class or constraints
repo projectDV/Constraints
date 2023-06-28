@@ -1,0 +1,12 @@
+module top;
+  int a[10];
+  initial begin
+    foreach(a[i]) begin
+      a[i]=i;
+    end
+    a.shuffle(); 
+    $display("%p",a);
+    end
+endmodule
+//==========================Result==========================
+'{1, 5, 9, 8, 2, 7, 6, 4, 0, 3}
