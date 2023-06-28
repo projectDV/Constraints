@@ -1,0 +1,27 @@
+class sample;
+	rand bit [15:0]a;
+  constraint a_c{foreach(a[i]){
+      if(a[i]==1 && i<15)
+        a[i+1]==0;}
+		}
+endclass
+module top;
+	sample s=new();
+  initial begin 
+    repeat(10)begin
+	s.randomize();
+      $display("Result: %b",s.a);
+	end
+	end
+endmodule 
+//=========================Result================================
+# Result: 0010000000100000
+# Result: 1010100010100100
+# Result: 0101000001010010
+# Result: 0000100101010010
+# Result: 1001000100000010
+# Result: 1010010100101001
+# Result: 0000000100001010
+# Result: 1010000101010001
+# Result: 0000010010010100
+# Result: 0010010001010000
