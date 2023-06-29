@@ -1,0 +1,24 @@
+class sample;//one hot
+	rand bit [15:0]a;
+  constraint a_c { $onehot(a);}
+endclass
+module top;
+	sample s=new();
+	initial begin
+	repeat(10) begin
+		assert(s.randomize());
+		$display("Bin= %b-> Dec= %d",s.a,s.a);
+	end
+    end
+endmodule
+//===============================Result=====================================
+# Bin= 0000000000100000-> Dec=    32
+# Bin= 0000000000000010-> Dec=     2
+# Bin= 0000000000000100-> Dec=     4
+# Bin= 0000000000000001-> Dec=     1
+# Bin= 0000000000100000-> Dec=    32
+# Bin= 0000000000000001-> Dec=     1
+# Bin= 0000000000001000-> Dec=     8
+# Bin= 1000000000000000-> Dec= 32768
+# Bin= 0000001000000000-> Dec=   512
+# Bin= 0000100000000000-> Dec=  2048
