@@ -1,0 +1,25 @@
+class sample; //multiple of power2
+  rand bit [4:0]power;
+	rand bit [7:0]a;
+	constraint a_c{ a==2**power;}
+endclass
+module top;
+	sample s=new();
+	initial begin
+	repeat(10) begin
+		assert(s.randomize());
+		$display("Power= %d, a= %d", s.power, s.a);
+	end
+	end
+endmodule
+//======================Result=============================
+# Power=  4, a=  16
+# Power=  4, a=  16
+# Power=  7, a= 128
+# Power=  3, a=   8
+# Power=  7, a= 128
+# Power=  6, a=  64
+# Power=  0, a=   1
+# Power=  1, a=   2
+# Power=  4, a=  16
+# Power=  4, a=  16
