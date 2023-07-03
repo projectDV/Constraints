@@ -1,0 +1,18 @@
+class sample;
+  rand longint a;
+  
+  constraint a_c{ foreach (a[i])
+    if(i>=0&&i<=31)
+      a[i]==1;
+    else
+      a[i]==0;}
+endclass
+module top;
+  sample s=new();
+  initial begin
+    s.randomize();
+    $display("%b",s.a);
+  end
+endmodule
+//===============================Result==========================
+# 0000000000000000000000000000000011111111111111111111111111111111
