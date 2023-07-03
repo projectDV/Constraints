@@ -1,0 +1,18 @@
+class sample;
+  rand int a;
+  constraint a_c{ foreach (a[i])
+    				if(i==11)
+                      a[i] inside {1,0};
+                 	else
+                      a[i]==0;
+                }
+endclass
+module top;
+  sample s=new();
+  initial begin
+    assert(s.randomize());
+    $display("%b",s.a);
+  end
+endmodule
+//====================================Result==============================
+# 00000000000000000000100000000000
