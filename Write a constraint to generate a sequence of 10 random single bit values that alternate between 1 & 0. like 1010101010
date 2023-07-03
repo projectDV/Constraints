@@ -1,0 +1,29 @@
+class sample;
+  rand bit a;
+  static bit b=0;
+  constraint a_c{a!=b;}
+  
+  function void post_randomize();
+    b=a;
+  endfunction
+endclass
+module top;
+  sample s=new();
+  initial begin
+  repeat(10) begin
+    assert(s.randomize());
+    $display("%b",s.a);
+  end
+  end
+endmodule
+//========================Result=========================
+# 1
+# 0
+# 1
+# 0
+# 1
+# 0
+# 1
+# 0
+# 1
+# 0
