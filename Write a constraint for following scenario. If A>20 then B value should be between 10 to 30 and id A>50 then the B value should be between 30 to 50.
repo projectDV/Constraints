@@ -1,0 +1,62 @@
+class sample;
+  rand bit [7:0] a; //avoid using int or byte as they're signed datatypes and can generate signed values which are undesirable
+  rand bit [7:0] b;
+  
+  //constraint a_c{ a<=20 && a>=50;}
+  constraint a_c{ (a<20) -> (b inside {[10:30]});}
+  constraint b_c{ (a>50) -> (b inside {[30:50]});}
+  
+  function void post_randomize();
+    $display("A=%0d",a);
+    $display("B=%0d",b);
+  endfunction
+endclass
+module top;
+  sample s=new();
+  initial begin
+    repeat(20) begin
+    assert(s.randomize());
+    end
+  end
+endmodule
+//====================Result========================
+# A=78
+# B=37
+# A=215
+# B=39
+# A=244
+# B=50
+# A=4
+# B=19
+# A=191
+# B=49
+# A=7
+# B=16
+# A=130
+# B=49
+# A=46
+# B=243
+# A=21
+# B=195
+# A=254
+# B=32
+# A=163
+# B=46
+# A=21
+# B=36
+# A=129
+# B=35
+# A=229
+# B=46
+# A=44
+# B=137
+# A=31
+# B=55
+# A=95
+# B=41
+# A=31
+# B=128
+# A=22
+# B=85
+# A=101
+# B=50
