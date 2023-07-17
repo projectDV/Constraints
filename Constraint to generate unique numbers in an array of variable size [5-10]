@@ -1,0 +1,46 @@
+class sample;
+
+  rand bit[7:0]a[];
+
+  constraint a_c{a.size inside {[5:10]};}
+  constraint a_c1{ foreach(a[i])
+    unique{a};} 
+
+	function void post_randomize();
+      $display("\nsize: %0d\n",a.size);
+      foreach(a[i]) begin
+        $display("Val: %0d\n",a[i]);
+      end
+	endfunction
+endclass
+module top;
+	sample s=new();
+	initial begin
+      repeat (2) begin
+      assert(s.randomize());
+	end
+end
+endmodule
+//======================Results=======================
+size: 9
+
+Val: 41
+Val: 64
+Val: 150
+Val: 196
+Val: 227
+Val: 61
+Val: 30
+Val: 178
+Val: 209
+
+size: 8
+
+Val: 197
+Val: 46
+Val: 203
+Val: 217
+Val: 2
+Val: 51
+Val: 94
+Val: 111
