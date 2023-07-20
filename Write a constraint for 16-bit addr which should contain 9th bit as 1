@@ -1,0 +1,20 @@
+class sample;
+  rand bit[15:0]addr;
+  constraint addr_c{ foreach(addr[i])
+    					if(i==8)
+                          addr[i]==1;
+                    	else
+                          addr[i]==0;
+                   }
+  function void post_randomize();
+    $display("%b",addr);
+  endfunction
+endclass
+module top;
+  sample s=new();
+  initial begin
+    assert(s.randomize());
+  end
+endmodule
+//========================Result===========================
+0000000100000000
