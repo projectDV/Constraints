@@ -2,7 +2,7 @@ class sample;
   rand bit [3:0] a,b;
   
   constraint ab_c{a!=b;}
-  constraint toggle{$countones(a);}
+  constraint toggle{$countones()==5;}
   
 endclass
 
