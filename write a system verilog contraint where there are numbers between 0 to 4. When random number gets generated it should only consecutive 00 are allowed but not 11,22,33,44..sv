@@ -11,7 +11,7 @@ class RandomNumber;
   }
   constraint allow_00 {
     // Allow consecutive 00
-    if (num == 0) num == 0;
+    if (num == 0) num == 00;
   }
 endclass
 
