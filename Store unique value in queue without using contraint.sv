@@ -1,22 +1,25 @@
-
 class sample;
-  	rand unsigned int data;
-  	int q[$];
-  function pre_randomize();
-    if(q.size()==8)
+  rand bit[4:0] data;
+  int q[$];
+  function void pre_randomize();
+    if(q.size()==20)
       q.delete();
   endfunction
-  function post_randomize();
-    q.pushback(a);
+  function void post_randomize();
+    if(!(data inside q))
+    	q.push_back(data);
   endfunction
 endclass
 module top;
   sample s=new();
   initial begin
-    repeat(5);
-    assert(s.randomize());
+    repeat(50) begin
+      assert(s.randomize());
+      $display("Data=%0p, Q=%p",s.data,s.q);
+    end
   end
 endmodule
+  
 =====================================RESULT=================================
 Data=3, Q='{3} 
 Data=22, Q='{3, 22} 
